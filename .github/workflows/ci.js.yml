@@ -1,6 +1,12 @@
 name: Node CI
 
-on: [push]
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  release:
+    types: [published]
 
 jobs:
 
@@ -45,11 +51,14 @@ jobs:
 
     - name: Build the Docker Image 
 
-      run: docker build . --file Dockerfile --tag githubcicd/nodejs
+      run: docker build . --file Dockerfile --tag abhay72/githubcicd
+    - name: Login to Docker Hub
+
+      run: docker login --username "${{ secrets.DOCKER_USERNAME }}" --password "${{ secrets.DOCKER_PASSWORD}}"
 
     - name: Push the Docker Image 
 
-      run: docker push githubcicd/nodejs
+      run: docker push abhay72/githubcicd
 
       
 
