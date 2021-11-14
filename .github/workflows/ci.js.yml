@@ -41,15 +41,15 @@ jobs:
 
     - name: Login to Docker Hub
 
-      run: docker login --username "${{ secrets.Docker_username }}" --password "${{ secrets.Docker_password }}"
+      run: docker login --username "${{ secrets.DOCKER_USERNAME }}" --password "${{ secrets.DOCKER_PASSWORD}}"
 
     - name: Build the Docker Image 
 
-      run: docker build . --file Dockerfile --tag krishnaprasadkv/nodejs
+      run: docker build . --file Dockerfile --tag githubcicd/nodejs
 
     - name: Push the Docker Image 
 
-      run: docker push krishnaprasadkv/nodejs
+      run: docker push githubcicd/nodejs
 
       
 
